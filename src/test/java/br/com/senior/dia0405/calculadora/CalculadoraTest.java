@@ -50,21 +50,16 @@ public class CalculadoraTest {
 	public void testOnlyCharsRecebendoCaracteresEspeciais() {
 		assertFalse(Validators.onlyValidChars("fndui..;/.;/"));
 	}
-	
-	@Test
-	public void testValidaSeValorEhNull() {
-		String valorInformado = null;
-		assertNotNull(Calculadora.validarValorInformado(valorInformado));
-	}
 	*/
 	@Test
-	public void testTestandoClasseMain() {
-		Calculadora calculadora = new Calculadora();
-		
+	public void testFiltroDaEntradaDeDados() {
+		String valorDigitado = "123abc";
+		String valorFiltrado = Calculadora.filtrarValorDigitado(valorDigitado);
+		assertEquals("123", valorFiltrado);
 	}
-	
+		
 	@Test
-	public void testValidaSeValorEhDiferenteDeNull() {
+	public void testSeValorInformadoEhDiferenteDeNull() {
 		String valorInformado = "123abc";
 		boolean resultado = Calculadora.validarValorInformado(valorInformado);
 		assertNotNull("58dfg", resultado);
