@@ -5,52 +5,27 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CalculadoraTest {
-/** 
-  	@Test
-	public void testSetSobrenomeSemNumero() {
-		Aluno aluno = new Aluno();
-		try {
-			aluno.setSobrenome("Gonçalves");	
-		}catch(Exception e) {			
-			fail(e.getMessage());
-		}
-		
-		assertNotNull(aluno.getSobrenome());
-	}
-	
-	@Test(expected = Exception.class)
-	public void testSetIdadeNegativa() throws Exception{
-		Aluno aluno = new Aluno();
-		aluno.setIdade(-10);
-	}
-	
-	@Test (expected = Exception.class)
-	public void testSetIdadeMaiorQue130() throws Exception{
-		Aluno aluno = new Aluno();
-		aluno.setIdade(131);
-	}
-	@Test 
-	public void testSetIdadeValida() throws Exception {
-		Aluno aluno = new Aluno();
-		aluno.setIdade(20);
-		assertEquals(20, (int) aluno.getIdade());
-	}
-	
-  	@Test
-	public void testOnlyChars() {
-		assertTrue(Validators.onlyValidChars("dbsjirfeguwirtbewuigfbreio"));
-	}
-	
 	@Test
-	public void testOnlyCharsRecebendoNumeros() {
-		assertFalse(Validators.onlyValidChars("dsadsa12233"));
+	public void testValidaValorDigitadoEhNull() {
+		String valorDigitado = "sd!@#°ºfçl*3";
+		boolean resultado = Calculadora.validarValorDigitado(valorDigitado);
+	    assertNotNull(null, resultado);
 	}
 
 	@Test
-	public void testOnlyCharsRecebendoCaracteresEspeciais() {
-		assertFalse(Validators.onlyValidChars("fndui..;/.;/"));
+	public void testSeValorInformadoEhDiferenteDeNull() {
+		String valorInformado = "123abc";
+		boolean resultado = Calculadora.validarValorDigitado(valorInformado);
+		assertNotNull("58dfg", resultado);
 	}
-	*/
+
+	@Test
+	public void testSeValorInformadoEhSomenteNumeros() {
+		String valorInformado = "0123456789";
+		boolean resultado = Calculadora.validarValorDigitado(valorInformado);
+		assertNotNull("0123456789", resultado);
+	}
+
 	@Test
 	public void testFiltroDaEntradaDeDados() {
 		String valorDigitado = "123abc";
@@ -59,65 +34,58 @@ public class CalculadoraTest {
 	}
 		
 	@Test
-	public void testSeValorInformadoEhDiferenteDeNull() {
-		String valorInformado = "123abc";
-		boolean resultado = Calculadora.validarValorInformado(valorInformado);
-		assertNotNull("58dfg", resultado);
-	}
-
-	@Test
 	public void testCalculaQtdePessoasVisualizamAnuncioOriginalIgual30vezes() {
 		int valorInformado = 1;
-		int valorCalculo =  Calculadora.calculaQtdePessoasVisualizamAnuncioOriginal(valorInformado);
+		int valorCalculo =  Calculadora.calcularQtdePessoasVisualizamAnuncioOriginal(valorInformado);
 		assertEquals(30, valorCalculo);
 	}
 	
 	@Test
 	public void testCalculaQtdePessoasVisualizamAnuncioOriginalDiferenteDe30vezes() {
 		int valorInformado = 1;
-		int valorCalculo = Calculadora.calculaQtdePessoasVisualizamAnuncioOriginal(valorInformado);
+		int valorCalculo = Calculadora.calcularQtdePessoasVisualizamAnuncioOriginal(valorInformado);
 		assertNotEquals(31, valorCalculo, 0);
 	}
 	
 	@Test
 	public void testCalculaQtdePessoasVisualizamEClicamNoAnuncioIgual12porcento() {
 		double qtdePessoasVisualizamAnuncio = 30;
-		double valorCalculo = Calculadora.calculaQtdePessoasVisualizamClicamAnuncio(qtdePessoasVisualizamAnuncio);
+		double valorCalculo = Calculadora.calcularQtdePessoasVisualizamClicamAnuncio(qtdePessoasVisualizamAnuncio);
 		assertEquals(3.6, valorCalculo, 0.01);
 	}
 	
 	@Test
 	public void testCalculaQtdePessoasVisualizamEClicamNoAnuncDiferenteDe12porcento() {
 		double qtdePessoasVisualizamAnuncio = 1;
-		double valorCalculo = Calculadora.calculaQtdePessoasVisualizamClicamAnuncio(qtdePessoasVisualizamAnuncio);
+		double valorCalculo = Calculadora.calcularQtdePessoasVisualizamClicamAnuncio(qtdePessoasVisualizamAnuncio);
 		assertNotEquals(3.61, valorCalculo, 0.01);
 	}
 
 	@Test
 	public void testCalculaQtdePessoasCompartilhamAnuncioIgual15porcento() {
 		double qtdePessoasVisualizamClicamAnuncio = 3.6;
-		double valorCalculo = Calculadora.calculaQtdePessoasCompartilhamAnuncio(qtdePessoasVisualizamClicamAnuncio);
+		double valorCalculo = Calculadora.calcularQtdePessoasCompartilhamAnuncio(qtdePessoasVisualizamClicamAnuncio);
 		assertEquals(0.54, valorCalculo, 0.01);
 	}
 	
 	@Test
 	public void testCalculaQtdePessoasCompartilhamAnuncioDiferenteDe15porcento() {
 		double qtdePessoasVisualizamClicamAnuncio = 3.6;
-		double valorCalculo = Calculadora.calculaQtdePessoasCompartilhamAnuncio(qtdePessoasVisualizamClicamAnuncio);
+		double valorCalculo = Calculadora.calcularQtdePessoasCompartilhamAnuncio(qtdePessoasVisualizamClicamAnuncio);
 		assertNotEquals(0.55, valorCalculo, 0.01);
 	}
 	
 	@Test
 	public void testCalculaQtdeNovasVisualizacoesGeradasIgual40vezes() {
 		double qtdePessoasCompartilhamAnuncio = 0.54;
-		double valorCalculo = Calculadora.calculaQtdeNovasVisualizacoesGeradas(qtdePessoasCompartilhamAnuncio);
+		double valorCalculo = Calculadora.calcularQtdeNovasVisualizacoesGeradas(qtdePessoasCompartilhamAnuncio);
 		assertEquals(22.0, valorCalculo, 0.01);
 	}
 	
 	@Test
 	public void testCalculaQtdeNovasVisualizacoesGeradasDiferenteDe40vezes() {
 		double qtdePessoasCompartilhamAnuncio = 0.54;
-		double valorCalculo = Calculadora.calculaQtdeNovasVisualizacoesGeradas(qtdePessoasCompartilhamAnuncio);
+		double valorCalculo = Calculadora.calcularQtdeNovasVisualizacoesGeradas(qtdePessoasCompartilhamAnuncio);
 		assertNotEquals(21.9, valorCalculo, 0.01);
 	}
 }
